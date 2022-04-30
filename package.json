@@ -18,6 +18,7 @@
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.5.0",
+    "nodemon": "^2.0.16",
     "react-hook-form": "^7.30.0"
   }
 }
