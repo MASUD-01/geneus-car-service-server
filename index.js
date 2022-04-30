@@ -22,7 +22,7 @@ function verifyJWT(req, res, next) {
             return res.status(403).send({ message: 'Forbidden access' })
         }
         console.log('decoded', decoded)
-        req.decoded.decoded;
+        req.decoded = decoded;
         next();
     })
 
@@ -90,10 +90,14 @@ async function run() {
         app.get('/order', verifyJWT, async (req, res) => {
             const decodedEmail = req.decoded.email
             const email = req.query.email
+            console.log(email)
             if (email === decodedEmail) {
-                const query = { email };
+                const query = { email: email };
+                console.log(query)
                 const cursor = orderCollection.find(query);
+
                 const orders = await cursor.toArray();
+
                 res.send(orders)
             } else {
                 res.status(403).send({ message: 'forbidden accesss' })
